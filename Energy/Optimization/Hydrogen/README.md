@@ -1,4 +1,5 @@
 Title: Hybrid Energy Systems Optimization with Genetic Algorithm
+
 Hybrid Energy Systems (HES) combine multiple energy sources like solar, wind, hydrogen, and battery storage to optimize energy production, minimize costs, and improve grid stability. The goal of optimization is to maximize efficiency and minimize energy costs while ensuring that the energy demand is met reliably.
 
 In this example, we will use a Genetic Algorithm (GA) to optimize the allocation of energy production from various sources, balancing factors like energy cost, battery charge/discharge, and the energy supply to meet the load demand.
