@@ -1,1 +1,4 @@
-
+feature1,feature2,failure
+1,2,1
+2,3,0
+3,4,1
