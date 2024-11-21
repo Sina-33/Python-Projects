@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Organizational Learning Dashboard</title>
+</head>
+<body>
+    <h1>Organizational Learning Dashboard</h1>
+    <h2>Failure Prediction</h2>
+    <form id="failure-form">
+        <textarea id="failure-input" placeholder="Enter JSON data"></textarea>
+        <button type="submit">Predict Failure</button>
+    </form>
+    <div id="failure-output"></div>
+
+    <h2>Resource Optimization</h2>
+    <form id="resource-form">
+        <textarea id="resource-input" placeholder="Enter JSON data"></textarea>
+        <button type="submit">Optimize Resources</button>
+    </form>
+    <div id="resource-output"></div>
+
+    <script>
+        document.getElementById("failure-form").onsubmit = async (event) => {
+            event.preventDefault();
+            const input = document.getElementById("failure-input").value;
+            const response = await fetch("/predict_failure", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: input,
+            });
+            const result = await response.json();
+            document.getElementById("failure-output").textContent = JSON.stringify(result, null, 2);
+        };
+
+        document.getElementById("resource-form").onsubmit = async (event) => {
+            event.preventDefault();
+            const input = document.getElementById("resource-input").value;
+            const response = await fetch("/optimize_resources", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: input,
+            });
+            const result = await response.json();
+            document.getElementById("resource-output").textContent = JSON.stringify(result, null, 2);
+        };
+    </script>
+</body>
+</html>
