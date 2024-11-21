@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Smart Energy Optimizer</title>
+</head>
+<body>
+    <h1>Smart Energy Optimizer</h1>
+    <h2>Energy Consumption Prediction</h2>
+    <form id="predict-form">
+        <textarea id="predict-input" placeholder="Enter JSON data"></textarea>
+        <button type="submit">Predict</button>
+    </form>
+    <div id="predict-output"></div>
+
+    <h2>Energy Allocation Optimization</h2>
+    <form id="optimize-form">
+        <textarea id="optimize-input" placeholder="Enter JSON data"></textarea>
+        <button type="submit">Optimize</button>
+    </form>
+    <div id="optimize-output"></div>
+
+    <script>
+        document.getElementById("predict-form").onsubmit = async (event) => {
+            event.preventDefault();
+            const input = document.getElementById("predict-input").value;
+            const response = await fetch("/predict_energy", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: input,
+            });
+            const result = await response.json();
+            document.getElementById("predict-output").textContent = JSON.stringify(result, null, 2);
+        };
+
+        document.getElementById("optimize-form").onsubmit = async (event) => {
+            event.preventDefault();
+            const input = document.getElementById("optimize-input").value;
+            const response = await fetch("/optimize_allocation", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: input,
+            });
+            const result = await response.json();
+            document.getElementById("optimize-output").textContent = JSON.stringify(result, null, 2);
+        };
+    </script>
+</body>
+</html>
